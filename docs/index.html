@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GTA-V-Autopilot 视觉展示页：基于 Python 的 GTA V 画面捕获与计算机视觉管线（YOLO 目标检测、车道线检测、SORT 跟踪）演示素材。">
+  <meta name="keywords" content="GTA V, Autopilot, Python, YOLO, 车道线检测, 计算机视觉">
+  <meta name="author" content="UnstoppableCurry">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://unstoppablecurry.github.io/GTA-V-Autopilot/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="GTA-V-Autopilot · 视觉展示">
+  <meta property="og:description" content="Python GTA V 视觉处理与感知管线演示 — 基于仓库现有素材与代码结构。">
+  <meta property="og:url" content="https://unstoppablecurry.github.io/GTA-V-Autopilot/">
+  <meta property="og:image" content="https://unstoppablecurry.github.io/GTA-V-Autopilot/assets/demo.jpg">
+  <meta property="og:locale" content="zh_CN">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GTA-V-Autopilot · 视觉展示">
+  <meta name="twitter:description" content="Python GTA V 视觉处理与感知管线演示。">
+  <meta name="twitter:image" content="https://unstoppablecurry.github.io/GTA-V-Autopilot/assets/demo.jpg">
+
+  <title>GTA-V-Autopilot · 视觉展示</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳至主要内容</a>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a class="logo" href="./" aria-label="GTA-V-Autopilot 首页">
+        <span class="logo-mark" aria-hidden="true">GV</span>
+        <span>GTA-V-Autopilot</span>
+      </a>
+      <nav aria-label="页面导航">
+        <ul>
+          <li><a href="#overview">概览</a></li>
+          <li><a href="#architecture">架构</a></li>
+          <li><a href="#media">演示素材</a></li>
+          <li><a href="#structure">代码结构</a></li>
+          <li><a href="https://github.com/UnstoppableCurry/GTA-V-Autopilot" rel="noopener noreferrer">GitHub 仓库</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div>
+          <span class="hero-badge" role="status">Python · 计算机视觉 · Windows</span>
+          <h1 id="hero-title">GTA V 视觉感知与辅助驾驶实验</h1>
+          <p class="hero-lead">
+            本仓库包含面向 <strong>GTA V</strong> 游戏画面的 Python 视觉处理代码：屏幕捕获、目标检测、车道线检测与多目标跟踪。
+            此页面仅展示<strong>已验证的演示素材</strong>与<strong>代码目录结构</strong>，不对自动驾驶等级、准确率或完成度作任何承诺。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://github.com/UnstoppableCurry/GTA-V-Autopilot" rel="noopener noreferrer">
+              查看源代码
+            </a>
+            <a class="btn btn-secondary" href="#media">
+              浏览演示视频
+            </a>
+          </div>
+        </div>
+        <figure class="hero-visual">
+          <img
+            src="assets/demo.jpg"
+            alt="第一人称车载视角的高速公路画面，前方有白色 SUV，画面带有 bilibili 水印"
+            width="1280"
+            height="720"
+            loading="eager"
+            decoding="async"
+          >
+          <figcaption>demo.jpg — 仓库根目录静态截图（真实道路车载视角）</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Overview -->
+    <section id="overview" aria-labelledby="overview-title">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="overview-title">项目概览</h2>
+          <p>以下内容均来自仓库源码与目录结构的可观察事实，不含未经验证的性能声明。</p>
+        </div>
+
+        <div class="disclaimer" role="note">
+          <span class="disclaimer-icon" aria-hidden="true">⚠</span>
+          <div>
+            <strong>说明：</strong>README 尚未完善。本展示页不对系统的自主驾驶能力、控制精度、帧率或任务完成率作出推断。
+            视频描述仅反映<strong>画面中可见的内容</strong>，而非算法评估结果。
+          </div>
+        </div>
+
+        <div class="cards cols-3">
+          <article class="card">
+            <h3>🎯 目标检测</h3>
+            <p>源码引用 YOLO（Darknet 与 PyTorch 两套实现），用于检测画面中的车辆等目标。</p>
+            <ul>
+              <li><code>MutilCarDection.py</code></li>
+              <li><code>MutilCarDection_by_pytorch_yolo2.py</code></li>
+              <li><code>yolo-coco/</code></li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>🛣️ 车道线检测</h3>
+            <p>集成 Ultra-Fast-Lane-Detection 风格的 PyTorch 模型（<code>fastlanedetection/</code>）。</p>
+            <ul>
+              <li><code>visualization_by_pytorch.py</code></li>
+              <li><code>visualization.py</code></li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>📡 多目标跟踪</h3>
+            <p>SORT 算法配合卡尔曼滤波（<code>kalman.py</code>），用于关联检测框。</p>
+            <ul>
+              <li><code>gtav.py</code> 主循环</li>
+              <li><code>util/control.py</code> Windows 键盘模拟</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture -->
+    <section id="architecture" aria-labelledby="architecture-title">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="architecture-title">处理管线（据源码推断）</h2>
+          <p>基于 <code>gtav.py</code> 中 <code>autopilot()</code> 函数的调用顺序整理，仅为结构说明。</p>
+        </div>
+
+        <div class="flow" role="img" aria-label="处理流程：屏幕捕获 → YOLO 目标检测 → 车道线检测 → SORT 跟踪与可视化">
+          <div class="flow-step">
+            <strong>屏幕捕获</strong>
+            <span>ImageGrab / win32</span>
+          </div>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <div class="flow-step">
+            <strong>YOLO 检测</strong>
+            <span>yolo_predict</span>
+          </div>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <div class="flow-step">
+            <strong>车道线检测</strong>
+            <span>lane_predict</span>
+          </div>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <div class="flow-step">
+            <strong>SORT 跟踪</strong>
+            <span>Kalman + IoU</span>
+          </div>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <div class="flow-step">
+            <strong>可视化输出</strong>
+            <span>cv2.imshow</span>
+          </div>
+        </div>
+
+        <div class="cards cols-2" style="margin-top: 1.5rem;">
+          <article class="card">
+            <h3>运行环境</h3>
+            <p>代码依赖 Windows API（<code>win32api</code>、<code>win32gui</code>）与 CUDA 后端，面向 Windows 平台开发。</p>
+          </article>
+          <article class="card">
+            <h3>有限状态机目录</h3>
+            <p><code>有限状态机/</code> 含车速数据采集、键盘时间检测与神经网络实验脚本，与主视觉管线为独立模块。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Media -->
+    <section id="media" aria-labelledby="media-title">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="media-title">演示素材</h2>
+          <p>以下描述经逐帧核对，仅说明各视频中<strong>肉眼可见</strong>的内容。较大文件通过 GitHub Raw 链接提供，避免 Pages 部署体积过大。</p>
+        </div>
+
+        <div class="video-grid">
+          <!-- project_video.mp4 - embedded (5.8 MB) -->
+          <article class="video-card featured">
+            <div class="video-card-header">
+              <div class="video-meta">
+                <span class="tag tag-source">真实道路</span>
+                <span class="tag">5.8 MB · 22 秒</span>
+              </div>
+              <h3>project_video.mp4</h3>
+              <p class="video-desc">
+                <strong>可见内容：</strong>第一人称车载视角的高速公路行车画面；多车道、护栏与对向/同向车辆。
+                画面带有 bilibili 水印与中文字幕（如「原来是小货车」）。<strong>无</strong>检测框或车道线叠加层。
+                源码中 <code>gtav.py</code> 曾引用此文件作为 VideoCapture 输入（现已注释）。
+              </p>
+            </div>
+            <div class="video-wrapper">
+              <video
+                controls
+                preload="metadata"
+                poster="assets/posters/project_video.jpg"
+                width="1280"
+                height="720"
+                aria-label="project_video.mp4：真实道路高速公路车载视角录像，无视觉叠加"
+              >
+                <source src="assets/video/project_video.mp4" type="video/mp4">
+                您的浏览器不支持 HTML5 视频。请<a href="assets/video/project_video.mp4">直接下载</a>。
+              </video>
+            </div>
+            <div class="video-card-footer">
+              本地托管 · 1280×720 · H.264 · 25 fps
+            </div>
+          </article>
+
+          <!-- project_video2.mp4 - external (25 MB) -->
+          <article class="video-card">
+            <div class="video-card-header">
+              <div class="video-meta">
+                <span class="tag tag-source">GTA V 游戏内</span>
+                <span class="tag tag-external">外部链接 · 25 MB</span>
+              </div>
+              <h3>project_video2.mp4</h3>
+              <p class="video-desc">
+                <strong>可见内容：</strong>GTA V 游戏内高速公路第三人称/引擎渲染画面；晴天、多车道、路牌（如 Farm Hill Blvd EXIT 27）。
+                <strong>无</strong>检测框、车道线或 HUD 叠加。文件较大，通过 GitHub Raw 播放。
+              </p>
+            </div>
+            <div class="video-external">
+              <img
+                src="assets/posters/project_video2.jpg"
+                alt="GTA V 高速公路游戏画面预览：晴天多车道与出口路牌"
+                width="640"
+                height="360"
+                loading="lazy"
+                decoding="async"
+              >
+              <a
+                class="btn btn-primary"
+                href="https://raw.githubusercontent.com/UnstoppableCurry/GTA-V-Autopilot/v1/video/project_video2.mp4"
+                data-external-video
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                在新标签页打开视频（25 MB）
+              </a>
+              <p>1280×720 · H.264 · 50 秒 · 需等待缓冲</p>
+            </div>
+            <div class="video-card-footer">
+              也可在仓库中查看：<a href="https://github.com/UnstoppableCurry/GTA-V-Autopilot/blob/v1/video/project_video2.mp4">video/project_video2.mp4</a>
+            </div>
+          </article>
+
+          <!-- wtx.mp4 - external (19 MB) -->
+          <article class="video-card">
+            <div class="video-card-header">
+              <div class="video-meta">
+                <span class="tag tag-overlay">视觉叠加</span>
+                <span class="tag tag-external">外部链接 · 19 MB</span>
+              </div>
+              <h3>wtx.mp4</h3>
+              <p class="video-desc">
+                <strong>可见内容：</strong>与 project_video 类似的真实道路车载视角，但叠加了视觉处理结果——
+                彩色车道区域填充、车辆边界框、以及左上角「Radius of Curvature = …(m)」文字。
+                源码 <code>gtav.py</code> 中 <code>VideoWriter('wtx.mp4')</code> 表明此为管线输出录制。
+              </p>
+            </div>
+            <div class="video-external">
+              <img
+                src="assets/posters/wtx.jpg"
+                alt="带车道线填充与车辆检测框叠加的真实道路画面预览"
+                width="640"
+                height="360"
+                loading="lazy"
+                decoding="async"
+              >
+              <a
+                class="btn btn-primary"
+                href="https://raw.githubusercontent.com/UnstoppableCurry/GTA-V-Autopilot/v1/wtx.mp4"
+                data-external-video
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                在新标签页打开视频（19 MB）
+              </a>
+              <p>1280×720 · MPEG-4 · 18 秒</p>
+            </div>
+            <div class="video-card-footer">
+              也可在仓库中查看：<a href="https://github.com/UnstoppableCurry/GTA-V-Autopilot/blob/v1/wtx.mp4">wtx.mp4</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Structure -->
+    <section id="structure" aria-labelledby="structure-title">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="structure-title">仓库结构（摘要）</h2>
+          <p>主要模块与职责，不含 <code>有限状态机/速度仿真控制模拟数据处理/data/</code> 下的大量训练用小图。</p>
+        </div>
+
+        <pre class="tree" aria-label="仓库目录结构"><code>GTA-V-Autopilot/
+├── <span class="file">gtav.py</span>                          <span class="comment"># 主入口：屏幕捕获 + autopilot 循环</span>
+├── <span class="file">MutilCarDection.py</span>               <span class="comment"># YOLO (Darknet) 车辆检测</span>
+├── <span class="file">MutilCarDection_by_pytorch_yolo2.py</span><span class="comment"># YOLO (PyTorch) 车辆检测</span>
+├── <span class="file">visualization_by_pytorch.py</span>      <span class="comment"># 车道线检测 + 可视化</span>
+├── <span class="file">kalman.py</span>                        <span class="comment"># SORT 跟踪 + 卡尔曼滤波</span>
+├── <span class="dir">fastlanedetection/</span>               <span class="comment"># 车道线模型</span>
+├── <span class="dir">yolo-coco/</span>                       <span class="comment"># YOLO 配置与权重路径</span>
+├── <span class="dir">util/</span>                            <span class="comment"># Windows 键盘控制</span>
+├── <span class="dir">build_utils/</span>                     <span class="comment"># 工具与数据集辅助</span>
+├── <span class="dir">有限状态机/</span>                       <span class="comment"># 车速数据、键盘检测、NN 实验</span>
+├── <span class="file">demo.jpg</span>                         <span class="comment"># 静态演示截图</span>
+├── <span class="dir">video/</span>
+│   ├── <span class="file">project_video.mp4</span>
+│   └── <span class="file">project_video2.mp4</span>
+└── <span class="file">wtx.mp4</span>                          <span class="comment"># 视觉管线输出录制</span></code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>
+        <a href="https://github.com/UnstoppableCurry/GTA-V-Autopilot">GitHub 仓库</a>
+        ·
+        <a href="https://unstoppablecurry.github.io/GTA-V-Autopilot/">GitHub Pages 展示</a>
+        ·
+        素材描述基于仓库现有文件，不构成性能承诺
+      </p>
+      <p>© GTA-V-Autopilot · UnstoppableCurry</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
